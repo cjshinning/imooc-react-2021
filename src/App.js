@@ -6,16 +6,20 @@ class App extends React.Component {
     return (
       <div>
         <h2>独立团, 团长{boss}</h2>
-        <Yiying></Yiying>
+        <Yiying laoda="张大喵"></Yiying>
+        <Qibinglian laoda="孙德胜"></Qibinglian>
       </div>
     )
   }
 }
 
+function Qibinglian(props) {
+  return <h2>骑兵连{props.laoda}，冲啊！</h2>
+}
+
 class Yiying extends React.Component {
   render() {
-    const boss = '张大喵';
-    return <h2>一营营长，{boss}</h2>
+    return <h2>一营营长，{this.props.laoda}</h2>
   }
 }
 
