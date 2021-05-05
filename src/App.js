@@ -24,6 +24,29 @@ class Yiying extends React.Component {
       soldiers: ['虎子', '柱子', '王根生']
     }
     // this.addSoldier = this.addSoldier.bind(this);
+    console.log('组件初始化');
+  }
+  componentWillMount() {
+    console.log('组件马上就要加载了');
+  }
+  componentDidMount() {
+    console.log('组件加载完毕');
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log('组件要接收父组件的值了');
+  }
+  shouldComponentUpdate() {
+    console.log('判断是否要更新组件');
+    return true;
+  }
+  componentWillUpdate() {
+    console.log('马上就要更新组件了');
+  }
+  componentDidUpdate() {
+    console.log('组件更新完毕');
+  }
+  componentWillUnmount() {
+    console.log('组件卸载了');
   }
   addSoldier() {
     console.log('hello add soldier');
@@ -32,6 +55,7 @@ class Yiying extends React.Component {
     })
   }
   render() {
+    console.log('组件正在要加载');
     return (
       <div>
         <h2>一营营长，{this.props.laoda}</h2>
