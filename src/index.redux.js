@@ -21,3 +21,10 @@ export function addGun() {
 export function removeGun() {
   return { type: REMOVE_GUNM }
 }
+export function addGunAsync() {
+  return dispatch => {
+    setTimeout(() => {
+      return dispatch(addGun())
+    }, 2000)
+  }
+}
