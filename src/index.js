@@ -7,7 +7,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 import { Counter } from './index.redux';
 import App from './App';
@@ -25,6 +26,17 @@ function Qibinglian() {
   return <h2>骑兵连</h2>
 }
 
+class Test extends React.Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <h2>测试组件{this.props.match.url}</h2>
+    )
+  }
+}
+
 ReactDOM.render(
   (<Provider store={store}>
     <Router>
@@ -40,9 +52,12 @@ ReactDOM.render(
             <Link to="/qibinglian">骑兵连</Link>
           </li>
         </ul>
-        <Route path="/" exact component={App}></Route>
-        <Route path="/erying" component={Erying}></Route>
-        <Route path="/qibinglian" component={Qibinglian}></Route>
+        <Switch>
+          <Route path="/" exact component={App}></Route>
+          <Route path="/erying" component={Erying}></Route>
+          <Route path="/qibinglian" component={Qibinglian}></Route>
+          <Route path="/:location" component={Test}></Route>
+        </Switch>
       </div>
     </Router>
   </Provider>), document.getElementById('root')
