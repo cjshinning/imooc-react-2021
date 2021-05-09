@@ -1,7 +1,7 @@
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
-export function Auth(state = { isAuth=false, user: '李云龙' }, action) {
+export function Auth(state = { isAuth: false, user: '李云龙' }, action) {
   switch (action.type) {
     case LOGIN:
       return { ...state, isAuth: true };

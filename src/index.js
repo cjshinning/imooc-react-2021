@@ -10,11 +10,11 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import { Counter } from './index.redux';
+import Reducer from './reducer';
 import Auth from './Auth';
 import Dashboard from './Dashboard';
 
-let store = createStore(Counter, compose(
+let store = createStore(Reducer, compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
