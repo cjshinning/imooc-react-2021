@@ -5,6 +5,7 @@ import {
   Redirect
 } from "react-router-dom";
 import axios from 'axios';
+import './config';
 
 @connect(
   state => state.Auth,
