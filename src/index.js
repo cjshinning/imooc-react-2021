@@ -9,8 +9,11 @@ import {
   Route
 } from "react-router-dom";
 import Reducer from './reducer';
-import Auth from './Auth';
-import Dashboard from './Dashboard';
+import './config';
+import Login from './container/login/login';
+import Register from './container/register/register';
+// import Auth from './Auth';
+// import Dashboard from './Dashboard';
 
 let store = createStore(Reducer, compose(
   applyMiddleware(thunk),
@@ -21,10 +24,8 @@ ReactDOM.render(
   (<Provider store={store}>
     <Router>
       <div>
-        <Switch>
-          <Route path="/login" component={Auth}></Route>
-          <Route path="/dashboard" component={Dashboard}></Route>
-        </Switch>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/register" component={Register}></Route>
       </div>
     </Router>
   </Provider>), document.getElementById('root')

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
 import { Counter } from './index.redux';
-import { Auth } from './Auth.redux';
+// import { Auth } from './Auth.redux';
 
-export default combineReducers({ Counter, Auth });
+export default combineReducers({ Counter });
