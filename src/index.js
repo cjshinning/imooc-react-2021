@@ -19,11 +19,16 @@ let store = createStore(Reducer, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 
+function Boss() {
+  return <h2>Boss页面</h2>
+}
+
 ReactDOM.render(
   (<Provider store={store}>
     <Router>
       <div>
         <AuthRoute></AuthRoute>
+        <Route path="/boss" component={Boss}></Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/register" component={Register}></Route>
       </div>

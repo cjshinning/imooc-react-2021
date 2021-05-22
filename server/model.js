@@ -4,7 +4,6 @@
 // const DB_URL = 'mongodb://127.0.0.1:27017/imooc2021';
 // mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
-
 // mongoose.connection.on('connected', () => {
 //   console.log('mongo connected success');
 // })
