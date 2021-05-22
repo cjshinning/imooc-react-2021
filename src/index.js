@@ -12,8 +12,7 @@ import Reducer from './reducer';
 import './config';
 import Login from './container/login/login';
 import Register from './container/register/register';
-// import Auth from './Auth';
-// import Dashboard from './Dashboard';
+import AuthRoute from './component/authroute/authroute';
 
 let store = createStore(Reducer, compose(
   applyMiddleware(thunk),
@@ -24,6 +23,7 @@ ReactDOM.render(
   (<Provider store={store}>
     <Router>
       <div>
+        <AuthRoute></AuthRoute>
         <Route path="/login" component={Login}></Route>
         <Route path="/register" component={Register}></Route>
       </div>
