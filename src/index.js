@@ -15,6 +15,7 @@ import Register from './container/register/register';
 import AuthRoute from './component/authroute/authroute';
 import BossInfo from './container/bossinfo/bossinfo';
 import GeniusInfor from './container/geniusinfo/geniusinfo';
+import Dashboard from './component/dashboard/dashboard';
 import './index.css';
 
 let store = createStore(Reducer, compose(
@@ -22,19 +23,19 @@ let store = createStore(Reducer, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 
-function Boss() {
-  return <h2>Boss页面</h2>
-}
-
+// booss genius me msg 4个页面
 ReactDOM.render(
   (<Provider store={store}>
     <Router>
       <div>
         <AuthRoute></AuthRoute>
-        <Route path="/bossinfo" component={BossInfo}></Route>
-        <Route path="/geniusinfo" component={GeniusInfor}></Route>
-        <Route path="/login" component={Login}></Route>
-        <Route path="/register" component={Register}></Route>
+        <Switch>
+          <Route path="/bossinfo" component={BossInfo}></Route>
+          <Route path="/geniusinfo" component={GeniusInfor}></Route>
+          <Route path="/login" component={Login}></Route>
+          <Route path="/register" component={Register}></Route>
+          <Route component={Dashboard}></Route>
+        </Switch>
       </div>
     </Router>
   </Provider>), document.getElementById('root')
