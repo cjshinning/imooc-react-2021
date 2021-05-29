@@ -13,7 +13,10 @@ class BossInfo extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: ''
+      title: '',
+      desc: '',
+      company: '',
+      money: ''
     }
   }
   handlerChange(key, val) {

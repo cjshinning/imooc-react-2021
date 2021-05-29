@@ -14,6 +14,7 @@ import Login from './container/login/login';
 import Register from './container/register/register';
 import AuthRoute from './component/authroute/authroute';
 import BossInfo from './container/bossinfo/bossinfo';
+import GeniusInfor from './container/geniusinfo/geniusinfo';
 import './index.css';
 
 let store = createStore(Reducer, compose(
@@ -31,6 +32,7 @@ ReactDOM.render(
       <div>
         <AuthRoute></AuthRoute>
         <Route path="/bossinfo" component={BossInfo}></Route>
+        <Route path="/geniusinfo" component={GeniusInfor}></Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/register" component={Register}></Route>
       </div>
