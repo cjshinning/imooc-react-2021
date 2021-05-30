@@ -1,13 +1,48 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Result, List, WhiteSpace } from 'antd-mobile';
+import { Result, List, WhiteSpace, Modal } from 'antd-mobile';
+import browserCookie from 'browser-cookies';
+
+{/* <Button
+      onClick={() =>
+        alert('Delete', 'Are you sure???', [
+          { text: 'Cancel', onPress: () => console.log('cancel') },
+          {
+            text: 'Ok',
+            onPress: () =>
+              new Promise((resolve) => {
+                Toast.info('onPress Promise', 1);
+                setTimeout(resolve, 1000);
+              }),
+          },
+        ])
+      }
+    >
+      promise
+    </Button> */}
 
 @connect(
   state => state.user
 )
 class User extends React.Component {
+  constructor() {
+    super();
+    this.logout = this.logout.bind(this);
+  }
+  logout() {
+    const alert = Modal.alert;
+    alert('注销', '确认退出登录吗???', [
+      { text: '取消', onPress: () => console.log('cancel') },
+      {
+        text: '确认',
+        onPress: () => {
+          browserCookie.erase('userid');
+          window.location.href = window.location.href;
+        }
+      }
+    ])
+  }
   render() {
-    console.log(this.props);
     const props = this.props;
     const Item = List.Item;
     const Brief = Item.Brief;
@@ -29,7 +64,7 @@ class User extends React.Component {
         </List>
         <WhiteSpace></WhiteSpace>
         <List>
-          <Item>退出登录</Item>
+          <Item onClick={this.logout}>退出登录</Item>
         </List>
       </div>
     ) : null
