@@ -4,6 +4,7 @@ import Logo from '../../component/logo/logo';
 import { List, InputItem, Button, WhiteSpace, WingBlank } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { login } from '../../redux/user.redux';
+import imoocForm from '../../component/imooc-form/imooc-form';
 
 // function hello() {
 //   console.log('Hello imooc, I love react!');
@@ -21,60 +22,57 @@ import { login } from '../../redux/user.redux';
 // hello = wrapperHello(hello);
 // hello();
 
+// 属性代理 反向继承
+// function WrapperHello(Comp) {
+//   class WrapComp extends Comp{
+//     componentDidMount() {
+//       console.log('高阶组件生命周期，加载完成');
+//     }
+//     render() {
+//       return <Comp></Comp>
+//     }
+//   }
+//   // class WrapComp extends React.Component {
+//   //   render() {
+//   //     return (
+//   //       <div>
+//   //         <p>这是高阶组件HOC特有的元素</p>
+//   //         <Comp name='test' {...this.props}></Comp>
+//   //       </div>
+//   //     )
+//   //   }
+//   // }
+//   return WrapComp;
+// }
 
-function WrapperHello(Comp) {
-  class WrapComp extends React.Component {
-    render() {
-      return (
-        <div>
-          <p>这是高阶组件HOC特有的元素</p>
-          <Comp {...this.props}></Comp>
-        </div>
-      )
-    }
-  }
-  return WrapComp;
-}
-
-
-
-
-@WrapperHello
-class Hello extends React.Component {
-  render() {
-    return <h2>Hello imooc, I love react and redux.</h2>
-  }
-}
+// @WrapperHello
+// class Hello extends React.Component {
+//   render() {
+//     return <h2>Hello imooc, I love react and redux.</h2>
+//   }
+// }
 
 @connect(
   state => state.user,
   { login }
 )
+@imoocForm
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: '',
-      pwd: ''
-    }
     this.register = this.register.bind(this);
     this.handlerLogin = this.handlerLogin.bind(this);
   }
   register() {
     this.props.history.push('/register');
   }
-  handlerChange(key, val) {
-    this.setState({
-      [key]: val
-    });
-  }
   handlerLogin() {
-    this.props.login(this.state);
+    this.props.login(this.props.state);
   }
   render() {
     return (
       <div>
-        <Hello></Hello>
+        {/* <Hello></Hello> */}
         {this.props.redirectTo && this.props.redirectTo !== '/login' ? <Redirect to={this.props.redirectTo} /> : null}
         <Logo></Logo>
         <h2>登录页</h2>
@@ -82,11 +80,11 @@ class Login extends React.Component {
           <List>
             {this.props.msg ? <p className='error-msg'>{this.props.msg}</p> : null}
             <InputItem
-              onChange={(v) => { this.handlerChange('user', v) }}
+              onChange={(v) => { this.props.handlerChange('user', v) }}
             >用户</InputItem>
             <InputItem
               type="password"
-              onChange={(v) => { this.handlerChange('pwd', v) }}
+              onChange={(v) => { this.props.handlerChange('pwd', v) }}
             >密码</InputItem>
           </List>
           <WhiteSpace></WhiteSpace>
