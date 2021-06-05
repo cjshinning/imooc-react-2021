@@ -8,7 +8,6 @@ export default function imoocForm(Comp) {
       this.handlerChange = this.handlerChange.bind(this);
     }
     handlerChange(key, val) {
-      console.log(key, val);
       this.setState({
         [key]: val
       });
