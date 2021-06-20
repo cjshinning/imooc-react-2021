@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, InputItem, NavBar, Icon } from 'antd-mobile';
+import { List, InputItem, NavBar, Icon, Grid } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux';
 import { getChatId } from '../../util';
@@ -21,6 +21,11 @@ class Chat extends React.Component {
       this.props.recvMsg();
     }
   }
+  fixCarousel() {
+    setTimeout(function () {
+      window.dispatchEvent(new Event('resize'))
+    }, 0);
+  }
   handlerSubmit() {
     // socket.emit('sendmsg', { text: this.state.text });
     // this.setState({text: ''});
@@ -28,10 +33,18 @@ class Chat extends React.Component {
     const to = this.props.match.params.user;
     const msg = this.state.text;
     this.props.sendMsg({ from, to, msg });
-    this.setState({ text: '' });
+    this.setState({
+      text: '',
+      showEmoji: false
+    });
   }
   render() {
     // console.log(this.props);
+    const emoji = '😀 😃 😄 😁 😆 😅 😂 😊 😇 🙂 🙃 😉 😌 😍 😘 😗 😙 😚 😋 😜 😝 😛 🤑 🤗 🤓 😎 😏 😒 😞 😔 😟 😕 🙁 😣 😖 😫 😩 😤 😠 😡 😶 😐 😑 😯 😦 😧 😮 😲 😵 😳 😱 😨 😰 😢 😥 😭 😓 😪 😴 🙄 🤔 😬 🤐 😷 🤒 🤕 😈 👿 👹 👺 💩 👻 💀 ☠️ 👽 👾 🤖 🎃 😺 😸 😹 😻 😼 😽 🙀 😿 😾 👐 🙌 👏 🙏 👍 👎 👊 ✊ 🤘 👌 👈 👉 👆 👇 ✋  🖐 🖖 👋  💪 🖕 ✍️  💅 🖖 💄 💋 👄 👅 👂 👃 👁 👀 '
+      .split(' ')
+      .filter(v => v)
+      .map(v => ({ text: v }));
+
     const userid = this.props.match.params.user;
     const Item = List.Item;
     const users = this.props.chat.users;
@@ -70,6 +83,19 @@ class Chat extends React.Component {
             )
         })}
         <div className="stick-footer">
+          {this.state.showEmoji ?
+            <Grid
+              data={emoji}
+              columnNum={9}
+              carouselMaxRow={4}
+              isCarousel={true}
+              onClick={el => {
+                console.log(el);
+                this.setState({
+                  text: this.state.text + el.text
+                })
+              }}
+            /> : null}
           <List>
             <InputItem
               placeholder='请输入'
@@ -77,7 +103,20 @@ class Chat extends React.Component {
               onChange={v => {
                 this.setState({ text: v })
               }}
-              extra={<span onClick={() => this.handlerSubmit()}>发送</span>}
+              extra={
+                <div>
+                  <span
+                    style={{ marginRight: 15 }}
+                    onClick={() => {
+                      this.setState({
+                        showEmoji: !this.state.showEmoji
+                      })
+                      this.fixCarousel();
+                    }}
+                  >😀</span>
+                  <span onClick={() => this.handlerSubmit()}>发送</span>
+                </div>
+              }
             ></InputItem>
           </List>
         </div>
