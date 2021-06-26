@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { List } from 'antd-mobile';
+import { List, Badge } from 'antd-mobile';
 
 @connect(
   state => state
@@ -24,17 +24,22 @@ class Msg extends React.Component {
     return (
       <div>
         {chatList.map(v => {
-          // console.log(v);
+          console.log(v);
           const lastItem = this.getLast(v);
+          const unreadNum = v.filter(v => !v.read && v.to === userid).length;
           const targetId = v[0].from === userid ? v[0].to : v[0].from;
-          const name = userInfo[targetId] ? userInfo[targetId].name : '';
-          const avatar = userInfo[targetId] ? userInfo[targetId].avatar : '';
+          if (!userInfo[targetId]) {
+            return null;
+          }
+          // const name = userInfo[targetId] ? userInfo[targetId].name : '';
+          // const avatar = userInfo[targetId] ? userInfo[targetId].avatar : '';
           return (
             <List
               key={lastItem._id}
             >
               <Item
-                thumb={require(`../img/${avatar}.png`).default}
+                extra={<Badge text={unreadNum} />}
+                thumb={require(`../img/${userInfo[targetId].avatar}.png`).default}
               >
                 {lastItem.content}
                 <Brief>{userInfo[targetId].name}</Brief>
