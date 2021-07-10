@@ -18,27 +18,31 @@ import GeniusInfor from './container/geniusinfo/geniusinfo';
 import Dashboard from './component/dashboard/dashboard';
 import Chat from './component/chat/chat';
 import './index.css';
+// import Demo from './demo';
+import './01.learn.redux';
 
-let store = createStore(Reducer, compose(
-  applyMiddleware(thunk),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-));
+// ReactDOM.render(<Demo />, document.getElementById('root'));
 
-// booss genius me msg 4个页面
-ReactDOM.render(
-  (<Provider store={store}>
-    <Router>
-      <div>
-        <AuthRoute></AuthRoute>
-        <Switch>
-          <Route path="/bossinfo" component={BossInfo}></Route>
-          <Route path="/geniusinfo" component={GeniusInfor}></Route>
-          <Route path="/login" component={Login}></Route>
-          <Route path="/register" component={Register}></Route>
-          <Route path="/chat/:user" component={Chat}></Route>
-          <Route component={Dashboard}></Route>
-        </Switch>
-      </div>
-    </Router>
-  </Provider>), document.getElementById('root')
-);
+// let store = createStore(Reducer, compose(
+//   applyMiddleware(thunk),
+//   window.devToolsExtension ? window.devToolsExtension() : f => f
+// ));
+
+// // booss genius me msg 4个页面
+// ReactDOM.render(
+//   (<Provider store={store}>
+//     <Router>
+//       <div>
+//         <AuthRoute></AuthRoute>
+//         <Switch>
+//           <Route path="/bossinfo" component={BossInfo}></Route>
+//           <Route path="/geniusinfo" component={GeniusInfor}></Route>
+//           <Route path="/login" component={Login}></Route>
+//           <Route path="/register" component={Register}></Route>
+//           <Route path="/chat/:user" component={Chat}></Route>
+//           <Route component={Dashboard}></Route>
+//         </Switch>
+//       </div>
+//     </Router>
+//   </Provider>), document.getElementById('root')
+// );
