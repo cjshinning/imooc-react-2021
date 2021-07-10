@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addGun, removeGun, addGunAsync } from './index.redux';
 
-@connect(
-  // 需要的属性放到props
-  state => ({ num: state.Counter }),
-  // 需要的方法放到props，自动dispatch
-  { addGun, removeGun, addGunAsync },
-)
+// @connect(
+//   // 需要的属性放到props
+//   state => ({ num: state.Counter }),
+//   // 需要的方法放到props，自动dispatch
+//   { addGun, removeGun, addGunAsync },
+// )
 class App extends React.Component {
   render() {
     return (
@@ -20,5 +20,9 @@ class App extends React.Component {
     )
   }
 }
+App = connect(
+  state => ({ num: state.Counter }),
+  { addGun, removeGun, addGunAsync },
+)(App);
 
 export default App;

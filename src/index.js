@@ -20,8 +20,9 @@ import Chat from './component/chat/chat';
 import './index.css';
 // import Demo from './demo';
 import './01.learn.redux';
+import Page from './context.demo';
 
-// ReactDOM.render(<Demo />, document.getElementById('root'));
+ReactDOM.render(<Page />, document.getElementById('root'));
 
 // let store = createStore(Reducer, compose(
 //   applyMiddleware(thunk),
